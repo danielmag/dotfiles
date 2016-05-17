@@ -11,4 +11,6 @@ for rc in *rc gitconfig; do
   ln -sfv $BASE/$rc ~/.$rc
 done
 
+curl -fLo ~/z/z.sh --create-dirs https://raw.githubusercontent.com/rupa/z/master/z.sh
+
 sh install-vim
