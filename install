@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# inspired by junegunn's dotfiles
+
+# RC files
+cd $(dirname $BASH_SOURCE)
+BASE=$(pwd)
+for rc in *rc gitconfig; do
+  mkdir -pv bak
+  [ -e ~/.$rc ] && mv -v ~/.$rc bak/.$rc
+  ln -sfv $BASE/$rc ~/.$rc
+done
+
+sh install-vim

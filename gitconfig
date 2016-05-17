@@ -1,0 +1,9 @@
+[user]
+  name = Daniel M
+  email =
+[core]
+  editor = vim
+  excludesfile = ~/.gitignore
+[alias]
+  undo = "reset --soft HEAD~1"
+
