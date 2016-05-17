@@ -73,7 +73,7 @@ let g:UltiSnipsJumpBackwardTrigger     = '<s-tab>'
 Plug 'tpope/vim-fugitive'
 
 " comment/uncomment with motions
-Plug 'tpope/vim-commentary', { 'on': '<Plug>Commentary' }
+Plug 'tpope/vim-commentary'
 
 " focus events when using iterm2 (if using tmux, probably better to install
 " vim-tmux-focus-events)
@@ -355,21 +355,6 @@ nnoremap <leader>? :call <SID>goog(expand("<cWORD>"), 0)<cr>
 " ============================================================================
 
 " ----------------------------------------------------------------------------
-" Common  (Taken from junegunn dotfiles)
-" ----------------------------------------------------------------------------
-function! s:textobj_cancel()
-  if v:operator == 'c'
-    augroup textobj_undo_empty_change
-      autocmd InsertLeave <buffer> execute 'normal! u'
-            \| execute 'autocmd! textobj_undo_empty_change'
-            \| execute 'augroup! textobj_undo_empty_change'
-    augroup END
-  endif
-endfunction
-
-noremap         <Plug>(TOC) <nop>
-
-" ----------------------------------------------------------------------------
 " (Taken from junegunn dotfiles)
 " ?ii / ?ai | indent-object
 " ?io       | strictly-indent-object
@@ -407,7 +392,7 @@ function! s:indent_object(op, skip_blank, b, e, bd, ed)
       else | break | end
     endwhile
   endfor
-  execute printf('normal! %dgv%dg', max([1, d[0] + a:bd]), min([x, d[1] + a:ed]))
+  execute printf('normal! %dGV%dG', max([1, d[0] + a:bd]), min([x, d[1] + a:ed]))
 endfunction
 xnoremap <silent> ii :<c-u>call <SID>indent_object('>=', 1, line("'<"), line("'>"), 0, 0)<cr>
 onoremap <silent> ii :<c-u>call <SID>indent_object('>=', 1, line('.'), line('.'), 0, 0)<cr>
@@ -415,38 +400,4 @@ xnoremap <silent> ai :<c-u>call <SID>indent_object('>=', 1, line("'<"), line("'>
 onoremap <silent> ai :<c-u>call <SID>indent_object('>=', 1, line('.'), line('.'), -1, 1)<cr>
 xnoremap <silent> io :<c-u>call <SID>indent_object('==', 0, line("'<"), line("'>"), 0, 0)<cr>
 onoremap <silent> io :<c-u>call <SID>indent_object('==', 0, line('.'), line('.'), 0, 0)<cr>
-
-" ----------------------------------------------------------------------------
-" (Taken from junegunn dotfiles)
-" ?i# | inner comment
-" ----------------------------------------------------------------------------
-function! s:inner_comment(vis)
-  if synIDattr(synID(line('.'), col('.'), 0), 'name') !~? 'comment'
-    call s:textobj_cancel()
-    if a:vis
-      normal! gv
-    endif
-    return
-  endif
-
-  let origin = line('.')
-  let lines = []
-  for dir in [-1, 1]
-    let line = origin
-    let line += dir
-    while line >= 1 && line <= line('$')
-      execute 'normal!' line.'G^'
-      if synIDattr(synID(line('.'), col('.'), 0), 'name') !~? 'comment'
-        break
-      endif
-      let line += dir
-    endwhile
-    let line -= dir
-    call add(lines, line)
-  endfor
-
-  execute 'normal!' lines[0].'GV'.lines[1].'G'
-endfunction
-xmap <silent> i# :<C-U>call <SID>inner_comment(1)<CR><Plug>(TOC)
-omap <silent> i# :<C-U>call <SID>inner_comment(0)<CR><Plug>(TOC)
 
