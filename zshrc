@@ -115,7 +115,7 @@ export FZF_DEFAULT_COMMAND='ag -g "" --ignore middleman/build'
 alias gcd="git checkout develop"
 gfeat() {
   branch_name=$(echo "$*" | tr -s " " -);
-  git checkout -b feat/$branch_name;
+  git checkout -b feature/$branch_name;
 }
 
 # ruby-related aliases
