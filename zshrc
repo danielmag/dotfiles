@@ -69,16 +69,6 @@ export EDITOR='vim'
 # Vi mode
 bindkey -v
 
-# Distiguish vi-style insert from normal mode
-function zle-line-init zle-keymap-select {
- VIM_PROMPT="%{$fg_bold[red]%}✪ %{$reset_color%}"
-  RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/ }"
-  RPS2=$RPS1
-  zle reset-prompt
-}
-zle -N zle-line-init
-zle -N zle-keymap-select
-
 # Vi mode breaks history navigation with the arrow keys,
 # this fixes it
 # Using history-substring-search plugin
