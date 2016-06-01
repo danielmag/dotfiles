@@ -291,7 +291,7 @@ set titlestring=Vim:\ %-25.55F\ %a%r%m titlelen=70 " configure title to look lik
 set background=dark " Theme
 colorscheme base16-default
 
-set statusline=%<[%n]\ %f\ %m%r%y\ %{exists('g:loaded_fugitive')?fugitive#statusline():''}\ %=%-14.(%l,%c%V%)\ %P
+set statusline=%<[%n]\ %{expand('%:h')}/%1*%t%*\ %m%r%y\ %{exists('g:loaded_fugitive')?fugitive#statusline():''}\ %=%-14.(%l,%c%V%)\ %P
 
 let g:netrw_liststyle=3 " use tree view in netrw
 
