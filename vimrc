@@ -116,6 +116,11 @@ nnoremap gsj :SplitjoinJoin<cr>
 " Start a * or # search from a visual block
 Plug 'bronson/vim-visual-star-search'
 
+" dont repeat basic movement keys
+Plug 'takac/vim-hardtime'
+
+let g:hardtime_default_on = 1
+
 " Add plugins to &runtimepath
 call plug#end()
 
