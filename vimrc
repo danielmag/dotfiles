@@ -75,12 +75,11 @@ Plug 'tpope/vim-fugitive'
 " comment/uncomment with motions
 Plug 'tpope/vim-commentary'
 
-" focus events when using iterm2 (if using tmux, probably better to install
-" vim-tmux-focus-events)
-Plug 'sjl/vitality.vim'
 
 " plugin for intelligently toggling line numbers
 Plug 'myusuf3/numbers.vim'
+" focus events when using iterm2
+Plug 'tmux-plugins/vim-tmux-focus-events'
 
 " Perform all vim insert mode completions with Tab
 Plug 'ervandew/supertab'
