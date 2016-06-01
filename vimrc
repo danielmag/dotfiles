@@ -421,3 +421,8 @@ onoremap <silent> ai :<c-u>call <SID>indent_object('>=', 1, line('.'), line('.')
 xnoremap <silent> io :<c-u>call <SID>indent_object('==', 0, line("'<"), line("'>"), 0, 0)<cr>
 onoremap <silent> io :<c-u>call <SID>indent_object('==', 0, line('.'), line('.'), 0, 0)<cr>
 
+" ----------------------------------------------------------------------------
+" ?af | entire file (around file)
+" ----------------------------------------------------------------------------
+xnoremap <silent> af gg0oG$
+onoremap <silent> af :<C-U>execute "normal! m`"<Bar>keepjumps normal! ggVG<CR>
