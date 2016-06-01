@@ -103,7 +103,8 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export FZF_DEFAULT_COMMAND='ag -g "" --ignore middleman/build'
+export FZF_DEFAULT_COMMAND='ag -g "" --path-to-agignore ~/.agignore'
+alias ag='ag --path-to-agignore ~/.agignore'
 
 alias gcd="git checkout develop"
 gfeat() {
