@@ -39,6 +39,7 @@ Plug 'evidens/vim-twig'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
+let $FZF_DEFAULT_COMMAND = 'ag -l -g ""'
 nnoremap <c-p> :FZF<CR>
 
 " theme
