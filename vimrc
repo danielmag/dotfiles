@@ -71,6 +71,9 @@ let g:UltiSnipsExpandTrigger           = '<tab>'
 let g:UltiSnipsJumpForwardTrigger      = '<tab>'
 let g:UltiSnipsJumpBackwardTrigger     = '<s-tab>'
 
+set runtimepath+=~/.vim/my-snippets/
+let g:UltiSnipsSnippetsDir='~/.vim/my-snippets/UltiSnips'
+
 " git integration
 Plug 'tpope/vim-fugitive'
 
