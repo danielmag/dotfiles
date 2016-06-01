@@ -30,6 +30,7 @@ call plug#begin('~/.vim/plugged')
 " Make sure you use single quotes
 
 " Language plugins
+Plug 'vim-ruby/vim-ruby'
 Plug 'pangloss/vim-javascript'
 Plug 'othree/html5.vim'
 Plug 'hail2u/vim-css3-syntax'
