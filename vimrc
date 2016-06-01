@@ -130,6 +130,8 @@ Plug 'christoomey/vim-tmux-navigator'
 " nnoremap <C-h> <C-w>h
 " nnoremap <C-l> <C-w>l
 
+Plug 'airblade/vim-gitgutter'
+
 " Add plugins to &runtimepath
 call plug#end()
 
