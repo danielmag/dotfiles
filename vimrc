@@ -329,6 +329,12 @@ nmap Q @q
 " kill highlighted search
 nnoremap <silent> § :noh<CR>
 
+" indent after pasting
+nnoremap p p=`]`[
+nnoremap P P=`]`[
+nnoremap ]P P
+nnoremap ]p p
+
 " " ----------------------------------------------------------------------------
 " " Moving lines (Inpired by junegunn dotfiles)
 " " ----------------------------------------------------------------------------
