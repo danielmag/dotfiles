@@ -75,6 +75,9 @@ bindkey -v
 bindkey "^[[A" history-substring-search-up
 bindkey "^[[B" history-substring-search-down
 
+# escape insert mode using jk
+bindkey -M viins 'jk' vi-cmd-mode
+
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
