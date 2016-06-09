@@ -246,6 +246,7 @@ endif
 
 
 
+autocmd Filetype gitcommit setlocal spell textwidth=72
 
 " Remove trailing whitespace on save
 fun! TrimWhitespace()
