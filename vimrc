@@ -256,12 +256,25 @@ fun! TrimWhitespace()
 endfun
 autocmd BufWritePre * :call TrimWhitespace()
 
+" Change cursor shape between insert and normal mode in iTerm2.app
+if $TERM_PROGRAM =~ "iTerm"
+  if exists('$TMUX')
+    " tmux will only forward escape sequences to the terminal if surrounded by a
+    " DCS sequence
+    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+  else
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+  endif
+endif
+
 " reload file when focus gained and save when focus lost
 set autoread
 au FocusGained,BufEnter * :silent! !
 au FocusLost,WinLeave * :silent! w
 
-set clipboard^=unnamed,unnamedplus " write and read from the system clipboard
+set clipboard^=unnamed,unnamedplus  " write and read from the system clipboard
 
 autocmd VimResized * tabdo wincmd = " equalizes window sizes when Vim is resized
 
