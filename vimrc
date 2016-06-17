@@ -80,9 +80,6 @@ Plug 'tpope/vim-fugitive'
 " comment/uncomment with motions
 Plug 'tpope/vim-commentary'
 
-
-" plugin for intelligently toggling line numbers
-Plug 'myusuf3/numbers.vim'
 " focus events when using iterm2
 Plug 'tmux-plugins/vim-tmux-focus-events'
 
@@ -317,14 +314,16 @@ let g:netrw_liststyle=3 " use tree view in netrw
 
 " Avoid the escape key
 inoremap jk <Esc>
+cnoremap <silent> jk <Esc>
 
-" Disable relative numbers in command mode
-" mapping Esc key causes a lot of issues, so i'm using jk which is probably
-" better anyway
-nnoremap : :set norelativenumber<CR>:redraw<CR>:
-cnoremap <silent> <CR> <CR>:set relativenumber<CR>
-cnoremap <silent> jk <Esc>:set relativenumber<CR>
-cnoremap <silent> <C-c> <C-c>:set relativenumber<CR>
+" " Disable relative numbers in command mode
+" " mapping Esc key causes a lot of issues, so i'm using jk which is probably
+" " better anyway
+" nnoremap : :set norelativenumber<CR>:redraw<CR>:
+" cnoremap <silent> <CR> <CR>:set relativenumber<CR>
+" cnoremap <silent> jk <Esc>:set relativenumber<CR>
+" cnoremap <silent> <C-c> <C-c>:set relativenumber<CR>
+
 " write/save
 nnoremap <leader>ss :w<kEnter>
 
