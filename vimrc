@@ -299,6 +299,8 @@ set scrolloff=2                     " Always show at least one line above/below 
 set ignorecase                      " Case-insensitive searching.
 set smartcase                       " But case-sensitive if expression contains a capital letter.
 
+set timeoutlen=1000 ttimeoutlen=0   " kill esc lag
+
 set title                                          " enable setting title
 set titlestring=Vim:\ %-25.55F\ %a%r%m titlelen=70 " configure title to look like: Vim /path/to/file
 
