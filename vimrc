@@ -325,11 +325,12 @@ nnoremap : :set norelativenumber<CR>:redraw<CR>:
 cnoremap <silent> <CR> <CR>:set relativenumber<CR>
 cnoremap <silent> jk <Esc>:set relativenumber<CR>
 cnoremap <silent> <C-c> <C-c>:set relativenumber<CR>
+" write/save
+nnoremap <leader>ss :w<kEnter>
 
-" write
-nnoremap <leader>w :w<kEnter>
 " quit
 nnoremap <leader>q :q<kEnter>
+
 " source
 nnoremap <leader>so :so $MYVIMRC<kEnter>
 
