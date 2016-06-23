@@ -129,6 +129,9 @@ Plug 'christoomey/vim-tmux-navigator'
 
 Plug 'airblade/vim-gitgutter'
 
+" continuously updated session files
+Plug 'tpope/vim-obsession'
+
 " Add plugins to &runtimepath
 call plug#end()
 
@@ -350,6 +353,15 @@ nnoremap p p=`]`[
 nnoremap P P=`]`[
 nnoremap ]P P
 nnoremap ]p p
+
+" Autoload sessions created by tpope's vim-obsession when starting Vim.
+augroup sourcesession
+  autocmd!
+  autocmd VimEnter * nested
+        \ if !argc() && empty(v:this_session) && filereadable('Session.vim') |
+        \   source Session.vim |
+        \ endif
+augroup END
 
 " " ----------------------------------------------------------------------------
 " " Moving lines (Inpired by junegunn dotfiles)
