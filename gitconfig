@@ -1,6 +1,7 @@
 [user]
   name = Daniel M
-  email =
+[push]
+  default = current
 [core]
   editor = vim
   excludesfile = ~/.gitignore
