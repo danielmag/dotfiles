@@ -359,6 +359,9 @@ nnoremap P P=`]`[
 nnoremap ]P P
 nnoremap ]p p
 
+" split html attributes
+nnoremap gst :s/\(<\w\\|"\) /\1\r/g \| normal =at \| :noh<cr>
+
 " Autoload sessions created by tpope's vim-obsession when starting Vim.
 augroup sourcesession
   autocmd!
