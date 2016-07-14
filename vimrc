@@ -101,6 +101,11 @@ xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
+" wraps and unwraps function arguments, lists, and dictionaries
+Plug 'FooSoft/vim-argwrap'
+
+nnoremap <silent> gwr :ArgWrap<CR>
+let g:argwrap_padded_braces = '{'
 
 " simplifies the transition between multiline and single-line code
 Plug 'AndrewRadev/splitjoin.vim'
