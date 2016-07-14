@@ -366,8 +366,12 @@ nnoremap gst :s/\(<\w\\|"\) /\1\r/g \| normal =at \| :noh<cr>
 augroup sourcesession
   autocmd!
   autocmd VimEnter * nested
-        \ if !argc() && empty(v:this_session) && filereadable('Session.vim') |
-        \   source Session.vim |
+        \ if (!argc() || (argc() == 1 && argv(0) == ".")) && empty(v:this_session) |
+        \   if filereadable('Session.vim') |
+        \     source Session.vim |
+        \   else |
+        \     Obsession |
+        \   endif |
         \ endif
 augroup END
 
