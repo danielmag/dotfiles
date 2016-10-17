@@ -110,7 +110,7 @@ Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'ervandew/supertab'
 
 " Insert or delete brackets, parens, quotes in pairs
-Plug 'jiangmiao/auto-pairs'
+Plug 'Raimondi/delimitMate'
 
 " Automatically create any non-existent directories before writing the buffer
 Plug 'pbrisbin/vim-mkdir'
