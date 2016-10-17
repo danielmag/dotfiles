@@ -315,42 +315,60 @@ set autoread
 au FocusGained,BufEnter * :silent! !
 au FocusLost,WinLeave * :silent! w
 
-set clipboard^=unnamed,unnamedplus  " write and read from the system clipboard
+" write and read from the system clipboard
+set clipboard^=unnamed,unnamedplus
 
-autocmd VimResized * tabdo wincmd = " equalizes window sizes when Vim is resized
+" equalizes window sizes when Vim is resized
+autocmd VimResized * tabdo wincmd =
 
 set nowrap
 
-set cursorline                      " highlight current line
-set hlsearch                        " highlight all search matches
+" highlight current line
+set cursorline
+
+" highlight all search matches
+set hlsearch
 
 set relativenumber
 
-set iskeyword+=-                    " consider hyphenated words as words
+" consider hyphenated words as words (useful for html)
+set iskeyword+=-
 
 set completeopt+=longest,menuone
 
-set lazyredraw                      " avoid scrolling problems
-set ttyfast                         " Indicates a fast terminal connection.
+" avoid scrolling problems
+set lazyredraw
+" Indicates a fast terminal connection.
+set ttyfast
 
-set hidden                          " hides buffers instead of closing them
+" hides buffers instead of closing them
+set hidden
 
-set scrolloff=2                     " Always show at least one line above/below the cursor
+" Always show at least one line above/below the cursor
+set scrolloff=2
 
-set ignorecase                      " Case-insensitive searching.
-set smartcase                       " But case-sensitive if expression contains a capital letter.
+" Case-insensitive searching.
+set ignorecase
+" But case-sensitive if expression contains a capital letter.
+set smartcase
 
-set timeoutlen=1000 ttimeoutlen=0   " kill esc lag
+" kill esc lag
+set timeoutlen=1000 ttimeoutlen=0
 
-set title                                          " enable setting title
-set titlestring=Vim:\ %-25.55F\ %a%r%m titlelen=70 " configure title to look like: Vim /path/to/file
+" enable setting title
+set title
+" configure title to look like: Vim /path/to/file
+set titlestring=Vim:\ %-25.55F\ %a%r%m titlelen=70
 
-set background=dark " Theme
-colorscheme base16-default
+set background=dark
+colorscheme base16-default-dark
 
 set statusline=%<[%n]\ %{expand('%:h')}/%1*%t%*\ %m%r%y\ %{exists('g:loaded_fugitive')?fugitive#statusline():''}\ %=%-14.(%l,%c%V%)\ %P
+set statusline+=%#warningmsg#
+set statusline+=%*
 
-let g:netrw_liststyle=3 " use tree view in netrw
+" use tree view in netrw
+let g:netrw_liststyle=3
 
 """
 """ My mappings
@@ -359,14 +377,6 @@ let g:netrw_liststyle=3 " use tree view in netrw
 " Avoid the escape key
 inoremap jk <Esc>
 cnoremap <silent> jk <Esc>
-
-" " Disable relative numbers in command mode
-" " mapping Esc key causes a lot of issues, so i'm using jk which is probably
-" " better anyway
-" nnoremap : :set norelativenumber<CR>:redraw<CR>:
-" cnoremap <silent> <CR> <CR>:set relativenumber<CR>
-" cnoremap <silent> jk <Esc>:set relativenumber<CR>
-" cnoremap <silent> <C-c> <C-c>:set relativenumber<CR>
 
 " write/save
 nnoremap <leader>ss :w<kEnter>
@@ -394,9 +404,6 @@ nnoremap p p=`]`[
 nnoremap P P=`]`[
 nnoremap ]P P
 nnoremap ]p p
-
-" split html attributes
-nnoremap gst :s/\(<\w\\|"\) /\1\r/g \| normal =at \| :noh<cr>
 
 " Autoload sessions created by tpope's vim-obsession when starting Vim.
 augroup sourcesession
