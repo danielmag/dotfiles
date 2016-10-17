@@ -107,10 +107,6 @@ alias ag='ag --path-to-agignore ~/.agignore'
 export FZF_DEFAULT_COMMAND='ag -g ""'
 
 alias gcd="git checkout develop"
-gfeat() {
-  branch_name=$(echo "$*" | tr -s " " -);
-  git checkout -b feature/$branch_name;
-}
 
 # ruby-related aliases
 alias ber="bundle exec rails"
