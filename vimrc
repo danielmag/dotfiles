@@ -36,6 +36,29 @@ Plug 'othree/html5.vim'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'evidens/vim-twig'
 
+" ruby stuff
+Plug 'tpope/vim-cucumber'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-bundler'
+
+" send portion of text from a vim buffer to a running tmux session
+Plug 'jgdavey/tslime.vim'
+
+let g:tslime_always_current_session = 1
+let g:tslime_always_current_window = 1
+
+" A Vim wrapper for running tests on different granularities
+Plug 'janko-m/vim-test'
+
+let test#strategy = "tslime"
+
+" vim-test mappings
+nmap <silent> <leader>t :TestNearest<CR>
+nmap <silent> <leader>T :TestFile<CR>
+nmap <silent> <leader>a :TestSuite<CR>
+nmap <silent> <leader>l :TestLast<CR>
+nmap <silent> <leader>g :TestVisit<CR>
+
 " Fuzzy finding!
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -69,7 +92,7 @@ Plug 'honza/vim-snippets'
 
 let g:UltiSnipsExpandTrigger           = '<tab>'
 let g:UltiSnipsJumpForwardTrigger      = '<tab>'
-let g:UltiSnipsJumpBackwardTrigger     = '<s-tab>'
+let g:UltiSnipsJumpBackwardTrigger     = '<S-tab>'
 
 set runtimepath+=~/.vim/my-snippets/
 let g:UltiSnipsSnippetsDir='~/.vim/my-snippets/UltiSnips'
@@ -115,13 +138,26 @@ let g:splitjoin_join_mapping  = ''
 nnoremap gss :SplitjoinSplit<cr>
 nnoremap gsj :SplitjoinJoin<cr>
 
+" move function arguments (and other delimited-by-something items) left and right
+" also adds a very useful argument text object
+Plug 'AndrewRadev/sideways.vim'
+
+" In pt-pt osx keyboard these are the hjkl mappings for Alt
+" <A-j> = ¯
+" <A-k> = „
+" <A-h> = ˇ
+" <A-l> = ‘
+"
+nnoremap ˇ :SidewaysLeft<cr>
+nnoremap ‘ :SidewaysRight<cr>
+
+omap aa <Plug>SidewaysArgumentTextobjA
+xmap aa <Plug>SidewaysArgumentTextobjA
+omap ia <Plug>SidewaysArgumentTextobjI
+xmap ia <Plug>SidewaysArgumentTextobjI
+
 " Start a * or # search from a visual block
 Plug 'bronson/vim-visual-star-search'
-
-" dont repeat basic movement keys
-Plug 'takac/vim-hardtime'
-
-let g:hardtime_default_on = 1
 
 " Seamless navigation between tmux panes and vim splits
 Plug 'christoomey/vim-tmux-navigator'
@@ -136,6 +172,22 @@ Plug 'airblade/vim-gitgutter'
 
 " continuously updated session files
 Plug 'tpope/vim-obsession'
+
+" Async :make and linting framework for Neovim/Vim
+Plug 'neomake/neomake'
+
+let g:neomake_haml_enabled_makers       = ['hamllint']
+let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_scss_enabled_makers       = ['scss_lint']
+let g:neomake_ruby_enabled_makers       = ['rubocop']
+
+" Run neomake on write
+autocmd! BufWritePost * Neomake
+
+" tree explorer plugin for vim
+Plug 'scrooloose/nerdtree'
+
+let NERDTreeAutoDeleteBuffer=1
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -210,13 +262,6 @@ nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up> :echoe "Use k"<CR>
 nnoremap <Down> :echoe "Use j"<CR>
 
-" vim-test mappings
-nnoremap <silent> <Leader>t :TestFile<CR>
-nnoremap <silent> <Leader>s :TestNearest<CR>
-nnoremap <silent> <Leader>l :TestLast<CR>
-nnoremap <silent> <Leader>a :TestSuite<CR>
-nnoremap <silent> <leader>gt :TestVisit<CR>
-
 " Run commands that require an interactive shell
 " nnoremap <Leader>r :RunInInteractiveShell<space>
 
@@ -226,12 +271,6 @@ let g:html_indent_tags = 'li\|p'
 " Open new split panes to right and bottom, which feels more natural
 set splitbelow
 set splitright
-
-" configure syntastic syntax checking to check on open as well as save
-" let g:syntastic_check_on_open=1
-" let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
-" let g:syntastic_eruby_ruby_quiet_messages =
-"     \ {"regex": "possibly useless use of a variable in void context"}
 
 " Set spellfile to location that is guaranteed to exist, can be symlinked to
 " Dropbox or kept in Git and managed outside of thoughtbot/dotfiles using rcm.
@@ -384,12 +423,8 @@ augroup END
 "
 nnoremap <silent> ¯ :move+<cr>==
 nnoremap <silent> „ :move-2<cr>==
-nnoremap <silent> ˇ <<
-nnoremap <silent> ‘ >>
 xnoremap <silent> ¯ :move'>+<cr>gv=gv
 xnoremap <silent> „ :move-2<cr>gv=gv
-xnoremap <silent> ˇ <gv
-xnoremap <silent> ‘ >gv
 xnoremap < <gv
 xnoremap > >gv
 
