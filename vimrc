@@ -418,6 +418,12 @@ augroup sourcesession
         \ endif
 augroup END
 
+" search word under cursor using fzf's Ag
+nnoremap gag :Ag <C-R><C-W><cr>
+
+" go to horizontal middle of screen
+nnoremap zm zszH
+
 " " ----------------------------------------------------------------------------
 " " Moving lines (Inpired by junegunn dotfiles)
 " " ----------------------------------------------------------------------------
