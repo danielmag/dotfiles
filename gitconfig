@@ -7,5 +7,6 @@
   excludesfile = ~/.gitignore
 [alias]
   undo = "reset --soft HEAD~1"
+  safe = "!mkdir -p .git/safe"
 [commit]
   template = ~/.gitmessage
