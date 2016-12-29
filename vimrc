@@ -311,6 +311,9 @@ set clipboard^=unnamed,unnamedplus
 " equalizes window sizes when Vim is resized
 autocmd VimResized * tabdo wincmd =
 
+" other people shouldn't need to know vi to navigate the code
+set mouse=a
+
 set nowrap
 
 " highlight current line
