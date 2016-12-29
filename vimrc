@@ -67,7 +67,7 @@ let $FZF_DEFAULT_COMMAND = 'ag --path-to-agignore ~/.agignore -l -g ""'
 nnoremap <c-p> :FZF<CR>
 
 " theme
-Plug 'chriskempson/base16-vim'
+Plug 'morhetz/gruvbox'
 
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
@@ -360,8 +360,19 @@ set title
 " configure title to look like: Vim /path/to/file
 set titlestring=Vim:\ %-25.55F\ %a%r%m titlelen=70
 
+" Sometimes setting 'termguicolors' is not enough and one has to set the |t_8f|
+" and |t_8b| options explicitly. Default values of these options are
+" "^[[38;2;%lu;%lu;%lum" and "^[[48;2;%lu;%lu;%lum" respectively, but it is only
+" set when `$TERM` is `xterm`.
+" **Need to set it for tmux**
+set t_8f=[38;2;%lu;%lu;%lum
+set t_8b=[48;2;%lu;%lu;%lum
+
+" truecolors!
+set termguicolors
+
+colorscheme gruvbox
 set background=dark
-colorscheme base16-default-dark
 
 set statusline=%<[%n]\ %{expand('%:h')}/%1*%t%*\ %m%r%y\ %{exists('g:loaded_fugitive')?fugitive#statusline():''}\ %=%-14.(%l,%c%V%)\ %P
 set statusline+=%#warningmsg#
