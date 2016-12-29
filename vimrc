@@ -60,7 +60,6 @@ nmap <silent> <leader>g :TestVisit<CR>
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
-let $FZF_DEFAULT_COMMAND = 'ag --path-to-agignore ~/.agignore -l -g ""'
 nnoremap <c-p> :FZF<CR>
 
 " theme
