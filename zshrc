@@ -91,12 +91,6 @@ export EDITOR='vim'
 # Vi mode
 bindkey -v
 
-# Vi mode breaks history navigation with the arrow keys,
-# this fixes it
-# Using history-substring-search plugin
-bindkey "^[[A" history-substring-search-up
-bindkey "^[[B" history-substring-search-down
-
 # escape insert mode using jk
 bindkey -M viins 'jk' vi-cmd-mode
 
@@ -127,9 +121,3 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 alias ag='ag --path-to-ignore ~/.agignore'
 export FZF_DEFAULT_COMMAND='ag -g ""'
-
-alias gcd="git checkout develop"
-
-# ruby-related aliases
-alias ber="bundle exec rails"
-alias bem="bundle exec middleman"
