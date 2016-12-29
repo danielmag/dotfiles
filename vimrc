@@ -41,16 +41,13 @@ Plug 'tpope/vim-cucumber'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-bundler'
 
-" send portion of text from a vim buffer to a running tmux session
-Plug 'jgdavey/tslime.vim'
-
-let g:tslime_always_current_session = 1
-let g:tslime_always_current_window = 1
+" asynchronous build and test dispatcher
+Plug 'tpope/vim-dispatch'
 
 " A Vim wrapper for running tests on different granularities
 Plug 'janko-m/vim-test'
 
-let test#strategy = "tslime"
+let test#strategy = "dispatch"
 
 " vim-test mappings
 nmap <silent> <leader>t :TestNearest<CR>
