@@ -144,8 +144,8 @@ Plug 'AndrewRadev/sideways.vim'
 " <A-h> = ˇ
 " <A-l> = ‘
 "
-nnoremap ˇ :SidewaysLeft<cr>
-nnoremap ‘ :SidewaysRight<cr>
+nnoremap <Left> :SidewaysLeft<cr>
+nnoremap <Right> :SidewaysRight<cr>
 
 omap aa <Plug>SidewaysArgumentTextobjA
 xmap aa <Plug>SidewaysArgumentTextobjA
@@ -398,7 +398,7 @@ nnoremap Y y$
 nmap Q @q
 
 " kill highlighted search
-nnoremap <silent> § :noh<CR>
+nnoremap <silent> \ :noh<CR>
 
 " indent after pasting
 nnoremap p p=`]`[
@@ -435,10 +435,10 @@ nnoremap zm zszH
 " <A-h> = ˇ
 " <A-l> = ‘
 "
-nnoremap <silent> ¯ :move+<cr>==
-nnoremap <silent> „ :move-2<cr>==
-xnoremap <silent> ¯ :move'>+<cr>gv=gv
-xnoremap <silent> „ :move-2<cr>gv=gv
+nnoremap <silent> <Up> :move-2<cr>==
+nnoremap <silent> <Down> :move+<cr>==
+xnoremap <silent> <Up> :move-2<cr>gv=gv
+xnoremap <silent> <Down> :move'>+<cr>gv=gv
 xnoremap < <gv
 xnoremap > >gv
 
