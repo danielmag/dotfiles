@@ -102,6 +102,9 @@ bindkey -M viins 'jk' vi-cmd-mode
 
 source ~/z/z.sh
 
+# don't show history duplicates (when ctrl+r, for example)
+setopt hist_ignore_dups
+
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
