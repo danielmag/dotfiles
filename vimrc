@@ -68,6 +68,9 @@ Plug 'morhetz/gruvbox'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 
+" helpers for UNIX
+Plug 'tpope/vim-eunuch'
+
 " easily search for, substitute, and abbreviate multiple variants of a word
 Plug 'tpope/vim-abolish'
 
