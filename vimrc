@@ -391,9 +391,6 @@ let g:netrw_liststyle=3
 inoremap jk <Esc>
 cnoremap <silent> jk <Esc>
 
-" write/save
-nnoremap <leader>ss :w<kEnter>
-
 " quit
 nnoremap <leader>q :q<kEnter>
 
@@ -432,11 +429,13 @@ augroup sourcesession
 augroup END
 
 " search word under cursor using fzf's Ag
-nnoremap gag :Ag <C-R><C-W><cr>
+nnoremap <leader>ag :Ag <C-R><C-W><cr>
 
 " go to horizontal middle of screen
 nnoremap zm zszH
 
+" copy filepath to clipboard
+nnoremap <leader>pa :let @+ = expand("%")<cr>
 " " ----------------------------------------------------------------------------
 " " Moving lines (Inpired by junegunn dotfiles)
 " " ----------------------------------------------------------------------------
