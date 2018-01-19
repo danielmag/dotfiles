@@ -124,3 +124,10 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 alias ag='ag --path-to-ignore ~/.agignore'
 export FZF_DEFAULT_COMMAND='ag -g ""'
+
+# Hotel Tonight
+# assumes current directory name has the same name as the project in github
+function open-pr() {
+  open "https://github.com/hoteltonight/$(basename "$PWD")/compare/master...$(git rev-parse --abbrev-ref HEAD)"
+}
+
