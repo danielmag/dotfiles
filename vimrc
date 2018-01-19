@@ -460,7 +460,7 @@ function! s:goog(pat, lucky)
                    \ a:lucky ? 'btnI&' : '', q))
 endfunction
 
-nnoremap <leader>? :call <SID>goog(expand("<cWORD>"), 0)<cr>
+nnoremap <leader>? :call <SID>goog(expand("<C-R><C-W>"), 0)<cr>
 " nnoremap <leader>! :call <SID>goog(expand("<cWORD>"), 1)<cr>
 
 " ============================================================================
