@@ -97,6 +97,7 @@ let g:UltiSnipsSnippetsDir='~/.vim/my-snippets/UltiSnips'
 
 " git integration
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 
 " comment/uncomment with motions
 Plug 'tpope/vim-commentary'
