@@ -223,6 +223,8 @@ augroup END
 " shell for syntax highlighting purposes.
 let g:is_posix = 1
 
+set synmaxcol=200
+
 " Softtabs, 2 spaces
 set tabstop=2
 set shiftwidth=2
