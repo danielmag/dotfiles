@@ -372,7 +372,7 @@ set termguicolors
 colorscheme gruvbox
 set background=dark
 
-set statusline=%<[%n]\ %{expand('%:h')}/%1*%t%*\ %m%r%y\ %{exists('g:loaded_fugitive')?fugitive#statusline():''}\ %=%-14.(%l,%c%V%)\ %P
+set statusline=%<[%n]\ %{expand('%:h')}/%1*%t%*\ %m%r%y\ %=%-14.(%l,%c%V%)\ %P
 set statusline+=%#warningmsg#
 set statusline+=%*
 
