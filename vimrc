@@ -35,6 +35,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'othree/html5.vim'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'evidens/vim-twig'
+Plug 'slim-template/vim-slim'
 
 " ruby stuff
 Plug 'tpope/vim-cucumber'
