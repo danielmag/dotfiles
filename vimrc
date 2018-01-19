@@ -172,24 +172,16 @@ Plug 'airblade/vim-gitgutter'
 " continuously updated session files
 Plug 'tpope/vim-obsession'
 
-" Async :make and linting framework for Neovim/Vim
-Plug 'neomake/neomake'
+" Asynchronous Lint Engine
+Plug 'w0rp/ale'
 
-" temporary fix for scsslint
-" Seems like scsslint changed its error format so neomake isnt getting the right
-" output
-let g:neomake_scss_scsslint_maker = {
-      \ 'exe': 'scss-lint',
-      \ 'errorformat': '%A%f:%l [%t] %m',
-      \ }
+let g:ale_fixers = {
+      \   'ruby': ['rubocop'],
+      \}
 
-let g:neomake_haml_enabled_makers       = ['hamllint']
-let g:neomake_javascript_enabled_makers = ['eslint']
-let g:neomake_scss_enabled_makers       = ['scsslint']
-let g:neomake_ruby_enabled_makers       = ['rubocop']
+" Set this in your vimrc file to disabling highlighting
+let g:ale_set_highlights = 0
 
-" Run neomake on write
-autocmd! BufWritePost * Neomake
 
 " tree explorer plugin for vim
 Plug 'scrooloose/nerdtree'
