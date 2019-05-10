@@ -83,8 +83,8 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-alias ag='ag --path-to-ignore ~/.agignore'
-export FZF_DEFAULT_COMMAND='ag -g ""'
+# --mmap is being used because of this issue: https://github.com/ggreer/the_silver_searcher/issues/1038
+alias ag='ag --mmap --path-to-ignore ~/.agignore'
 
 # Hotel Tonight
 # assumes current directory name has the same name as the project in github
