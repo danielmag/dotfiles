@@ -92,3 +92,4 @@ function open-pr() {
   open "https://github.com/hoteltonight/$(basename "$PWD")/compare/master...$(git rev-parse --abbrev-ref HEAD)"
 }
 
+alias gpf='git push --force-with-lease'
