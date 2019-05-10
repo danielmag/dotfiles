@@ -202,6 +202,11 @@ Plug 'scrooloose/nerdtree'
 
 let NERDTreeAutoDeleteBuffer=1
 
+
+Plug 'editorconfig/editorconfig-vim'
+
+let g:EditorConfig_exclude_patterns = ['fugitive://.*']
+
 " Add plugins to &runtimepath
 call plug#end()
 
