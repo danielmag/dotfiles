@@ -61,7 +61,21 @@ nmap <silent> <leader>g :TestVisit<CR>
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
-nnoremap <c-p> :FZF<CR>
+nnoremap <leader>f :FZF<CR>!spec<space>
+nnoremap <leader>b :Buffers<CR>!spec<space>
+
+" search word under cursor using fzf's Ag
+nnoremap <leader>ag :Ag <C-R><C-W><cr>!spec<space>
+
+" Mapping selecting mappings
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
+
+" Insert mode completion
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-line)
 
 " theme
 Plug 'morhetz/gruvbox'
@@ -423,9 +437,6 @@ augroup sourcesession
         \   endif |
         \ endif
 augroup END
-
-" search word under cursor using fzf's Ag
-nnoremap <leader>ag :Ag <C-R><C-W><cr>
 
 " go to horizontal middle of screen
 nnoremap zm zszH
