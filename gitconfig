@@ -3,10 +3,12 @@
 [push]
   default = current
 [core]
-  editor = vim
   excludesfile = ~/.gitignore
+  editor = nvim
 [alias]
   undo = "reset --soft HEAD~1"
   safe = "!mkdir -p .git/safe"
 [commit]
   template = ~/.gitmessage
+[fetch]
+  prune = true
