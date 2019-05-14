@@ -5,7 +5,7 @@ export ZSH=/Users/daniel/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="bira"
+ZSH_THEME="avit"
 
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
 export PATH="~/ht/infrastructure/bin/darwin:$PATH"
@@ -42,5 +42,3 @@ export NVM_DIR="$HOME/.nvm"
 export EDITOR='vim'
 
 export FZF_DEFAULT_COMMAND='ag -g ""'
-
-export WATCHER_TOKEN=mKamrD7Wk7e7n3nBnvz6njsbW9Pr6V6R3NMP9MEp
