@@ -37,6 +37,9 @@ Plug 'tpope/vim-bundler'
 " ctags are very slow on the monorepo and not that useful for frontend work
 " let g:gutentags_enabled = 0
 
+" projectionist.vim: Granular project configuration. Very useful for alternating
+" between test and main file
+Plug 'tpope/vim-projectionist'
 
 " asynchronous build and test dispatcher
 Plug 'tpope/vim-dispatch'
