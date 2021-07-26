@@ -44,6 +44,9 @@ Plug 'tpope/vim-projectionist'
 " asynchronous build and test dispatcher
 Plug 'tpope/vim-dispatch'
 
+let g:dispatch_quickfix_height = 25
+let g:dispatch_tmux_height = 25
+
 " A Vim wrapper for running tests on different granularities
 Plug 'janko-m/vim-test'
 
@@ -52,12 +55,9 @@ let test#strategy = "neovim"
 " vim-test mappings
 nmap <silent> <leader>t :w<CR>:TestNearest<CR>
 nmap <silent> <leader>T :w<CR>:TestFile<CR>
-nmap <silent> <leader>a :w<CR>:TestSuite<CR>
 nmap <silent> <leader>l :w<CR>:TestLast<CR>
-nmap <silent> <leader>g :w<CR>:TestVisit<CR>
 
 let test#javascript#jest#options = '--config=config/jest.config.js'
-let test#ruby#rspec#executable = 'chruby $(cat .ruby-version); spring rspec'
 
 " Fuzzy finding!
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
