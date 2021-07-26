@@ -350,7 +350,7 @@ augroup END
 " shell for syntax highlighting purposes.
 let g:is_posix = 1
 
-set synmaxcol=200
+set synmaxcol=500
 
 " Softtabs, 2 spaces
 set tabstop=2
@@ -512,7 +512,7 @@ nnoremap Y y$
 nmap Q @q
 
 " kill highlighted search
-nnoremap <silent> \ :noh<CR>
+nnoremap <silent> ; :noh<CR>
 
 " indent after pasting
 nnoremap p p=`]`[
@@ -522,6 +522,15 @@ nnoremap ]p p
 
 " create commit message from branch name
 nnoremap <leader>cm /branch<CR>wyg_ggP:s/-/ /g<CR>dawgUl:noh<CR>
+
+" quick window navigation from terminal windows
+tnoremap <C-h> <C-\><C-n><C-w>h
+tnoremap <C-j> <C-\><C-n><C-w>j
+tnoremap <C-k> <C-\><C-n><C-w>k
+tnoremap <C-l> <C-\><C-n><C-w>l
+
+" go to insert mode when entering terminal windows
+:au BufEnter * if &buftype == 'terminal' | :startinsert | endif
 
 " Autoload sessions created by tpope's vim-obsession when starting Vim.
 augroup sourcesession
@@ -541,6 +550,8 @@ nnoremap zm zszH
 
 " copy filepath to clipboard
 nnoremap <leader>pa :let @+ = expand("%")<cr>
+" copy filename to clipboard
+nnoremap <leader>fn :let @+ = expand('%:t:r')<cr>
 " " ----------------------------------------------------------------------------
 " " Moving lines (Inpired by junegunn dotfiles)
 " " ----------------------------------------------------------------------------
