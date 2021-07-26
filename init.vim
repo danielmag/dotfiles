@@ -267,12 +267,17 @@ Plug 'w0rp/ale'
 
 let g:ale_fixers = {
       \   'ruby': ['rubocop'],
-      \   'javascript': ['prettier'],
+      \   'javascript': ['eslint'],
+      \   'typescript': ['eslint'],
+      \   'javascriptreact': ['eslint'],
+      \   'typescriptreact': ['eslint'],
       \}
 
 " Set this in your vimrc file to disabling highlighting
 let g:ale_set_highlights = 0
 
+nmap <leader>af :ALEFix<kEnter>
+let g:ale_fix_on_save = 1
 
 " tree explorer plugin for vim
 Plug 'scrooloose/nerdtree'
