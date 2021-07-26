@@ -16,8 +16,8 @@ call plug#begin('~/.local/share/nvim/plugged')
 " Language plugins
 Plug 'vim-ruby/vim-ruby'
 Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
-Plug 'dunckr/js_alternate.vim' " Alternate between spec and source with :A
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'othree/html5.vim'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'evidens/vim-twig'
