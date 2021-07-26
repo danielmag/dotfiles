@@ -40,7 +40,59 @@
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git bundler chruby)
+plugins=(git bundler zsh-autosuggestions)
+
+ZSH_THEME="avit"
+
+# Path to your oh-my-zsh installation.
+export ZSH=/Users/daniel_magarreiro/.oh-my-zsh
+
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/amazon-corretto-8.jdk/Contents/Home
+export PATH=$JAVA_HOME/bin:$PATH
+
+export PATH=$PATH:~/projects/apps/ios
+
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
+export PATH="/Users/daniel_magarreiro/ht/infrastructure/bin/darwin:$PATH"
+export PATH="$PATH:/opt/airbnb/bin"
+export PATH="$HOME/airlab/runtime_gems/tools/bin:$PATH"
+export PATH="$PATH:/Users/daniel_magarreiro/projects/jk"
+
+export TF_PLUGIN_CACHE_DIR="$HOME/.terraform.d/plugin-cache"
+
+# Remove the need for bundle exec ... or ./bin/...
+# by adding ./bin to path if the current project is trusted
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
+
+# place this after nvm initialization!
+autoload -U add-zsh-hook
+load-nvmrc() {
+  local node_version="$(nvm version)"
+  local nvmrc_path="$(nvm_find_nvmrc)"
+
+  if [ -n "$nvmrc_path" ]; then
+    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+
+    if [ "$nvmrc_node_version" = "N/A" ]; then
+      nvm install
+    elif [ "$nvmrc_node_version" != "$node_version" ]; then
+      nvm use
+    fi
+  elif [ "$node_version" != "$(nvm version default)" ]; then
+    echo "Reverting to nvm default version"
+    nvm use default
+  fi
+}
+add-zsh-hook chpwd load-nvmrc
+load-nvmrc
+
+export EDITOR='nvim'
+
+export FZF_DEFAULT_COMMAND='fd --type file'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # User configuration
 
@@ -62,6 +114,10 @@ bindkey -M viins 'jk' vi-cmd-mode
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 source ~/z/z.sh
+
+
+source <(yak completion zsh)
+
 
 # don't show history duplicates (when ctrl+r, for example)
 setopt hist_ignore_dups
@@ -86,6 +142,8 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 # --mmap is being used because of this issue: https://github.com/ggreer/the_silver_searcher/issues/1038
 alias ag='ag --mmap --path-to-ignore ~/.agignore'
 
+alias rg='rg --ignore-file ~/.agignore'
+
 # Hotel Tonight
 # assumes current directory name has the same name as the project in github
 function open-pr() {
@@ -93,3 +151,20 @@ function open-pr() {
 }
 
 alias gpf='git push --force-with-lease'
+alias grom='git pull; git rebase --interactive --autosquash --autostash origin/master'
+alias sauce='source ~/.zshrc'
+
+eval "$(rbenv init -)"
+
+# AIRLAB-DO-NOT-MODIFY section:ShellWrapper {{{
+# Airlab will only make edits inside these delimiters.
+
+# Source Airlab's shell integration, if it exists.
+if [ -e ~/.airlab/shellhelper.sh ]; then
+  source ~/.airlab/shellhelper.sh
+fi
+# AIRLAB-DO-NOT-MODIFY section:ShellWrapper }}}
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+export BAT_THEME="gruvbox-dark"
