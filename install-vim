@@ -10,6 +10,7 @@ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.g
 
 # vimrc
 mv -v ~/.vimrc ~/.vimrc.old 2> /dev/null
+mkdir ~/.config/nvim
 mv -v ~/.config/nvim/init.vim ~/.config/nvim/init.vim.old 2> /dev/null
 ln -sf $BASE/vimrc ~/.vimrc
 ln -sf $BASE/init.vim ~/.config/nvim/init.vim
