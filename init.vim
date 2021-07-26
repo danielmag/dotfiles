@@ -99,26 +99,9 @@ Plug 'tpope/vim-abolish'
 " Easy text exchange operator for Vim
 Plug 'tommcdo/vim-exchange'
 
-" TODO Maybe try lightline
-" " status/tabline
-" " makes terminal vim slow :(
-" Plug 'vim-airline/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
-
-" let g:airline_powerline_fonts = 1
-
-" Snippets!
-" Plug 'SirVer/ultisnips'
-" Snippets are separated from the engine
-" Plug 'honza/vim-snippets'
-
-" let g:UltiSnipsExpandTrigger           = '<tab>'
-
-" set runtimepath+=~/.vim/my-snippets/
-" let g:UltiSnipsSnippetsDir='~/.vim/my-snippets/UltiSnips'
-
 " git integration
 Plug 'tpope/vim-fugitive'
+
 Plug 'tpope/vim-rhubarb'
 
 " comment/uncomment with motions
@@ -126,9 +109,6 @@ Plug 'tpope/vim-commentary'
 
 " focus events when using iterm2
 Plug 'tmux-plugins/vim-tmux-focus-events'
-
-" Perform all vim insert mode completions with Tab
-Plug 'ervandew/supertab'
 
 " Insert or delete brackets, parens, quotes in pairs
 Plug 'Raimondi/delimitMate'
