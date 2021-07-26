@@ -407,11 +407,6 @@ set complete+=kspell
 " Always use vertical diffs
 set diffopt+=vertical
 
-" Local config
-if filereadable($HOME . "/.vimrc.local")
-  source ~/.vimrc.local
-endif
-
 autocmd Filetype gitcommit setlocal spell textwidth=72
 
 " Remove trailing whitespace on save
@@ -640,13 +635,6 @@ onoremap <silent> io :<c-u>call <SID>indent_object('==', 0, line('.'), line('.')
 xnoremap <silent> af gg0oG$
 onoremap <silent> af :<C-U>execute "normal! m`"<Bar>keepjumps normal! ggVG<CR>
 
-" load local custom vim config if present
-let b:thisdir = expand("%:p:h")
-let b:vim = b:thisdir . "/.vim.custom"
-if (filereadable(b:vim))
-  execute "source " . b:vim
-endif
-
 function! GetFullClassNameFn()
   " Save some registers
   let l:r_a = @a
@@ -686,3 +674,10 @@ function! GetFullClassNameFn()
 endfunction
 
 nnoremap <silent> <leader>cn :let @+ = GetFullClassNameFn()<cr>
+
+" load local custom vim config if present
+let b:thisdir = expand("%:p:h")
+let b:vim = b:thisdir . "/.vim.custom"
+if (filereadable(b:vim))
+  execute "source " . b:vim
+endif
