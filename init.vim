@@ -63,11 +63,13 @@ let test#javascript#jest#options = '--config=config/jest.config.js'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
-nnoremap <leader>f :FZF<CR>!spec<space>
+nnoremap <leader>f :call fzf#vim#files('', fzf#vim#with_preview('right'))<CR>
 nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>g :GitFiles?<CR>
 
-" search word under cursor using fzf's Ag
+" search word under cursor using fzf's Ag/Rg
 nnoremap <leader>ag :Ag <C-R><C-W><cr>!spec<space>
+nnoremap <leader>rg :Rg <C-R><C-W><cr>!spec<space>
 
 " search tags with fzf
 nnoremap <leader>ct :Tags ^<C-R><C-W><cr>
