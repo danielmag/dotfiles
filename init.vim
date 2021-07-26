@@ -30,9 +30,13 @@ Plug 'tpope/vim-rails'
 Plug 'tpope/vim-bundler'
 
 " ctags!
-Plug 'ludovicchabant/vim-gutentags'
+" Plug 'ludovicchabant/vim-gutentags'
 
-nmap <silent> <leader>] :exe v:count1."tag unsafe_tax_handling?"|norm! zv
+" nmap <silent> <leader>] :exe v:count1."tag unsafe_tax_handling?"|norm! zv
+
+" ctags are very slow on the monorepo and not that useful for frontend work
+" let g:gutentags_enabled = 0
+
 
 " asynchronous build and test dispatcher
 Plug 'tpope/vim-dispatch'
