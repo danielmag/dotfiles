@@ -5,7 +5,7 @@
 # RC files
 cd $(dirname $BASH_SOURCE)
 BASE=$(pwd)
-for rc in *rc zshenv gitmessage gitconfig gitignore agignore tmux.conf; do
+for rc in *rc zshenv gitmessage gitconfig gitignore rgignore tmux.conf; do
   mkdir -pv bak
   [ -e ~/.$rc ] && mv -v ~/.$rc bak/.$rc
   ln -sfv $BASE/$rc ~/.$rc

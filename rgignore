@@ -5,4 +5,5 @@ tmp
 bower_components/
 node_modules/
 build/
-
+BUILD.bazel
+tsconfig.json

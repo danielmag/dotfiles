@@ -6,7 +6,6 @@
   excludesfile = ~/.gitignore
   editor = nvim
   precomposeunicode = true
-  pager = delta | less --tabs=4 -RFX
 [alias]
   undo = "reset --soft HEAD~1"
   safe = "!mkdir -p .git/safe"
@@ -20,5 +19,5 @@
   version = 2
 [feature]
   manyFiles = true
-[interactive]
-  diffFilter = delta --color-only | less --tabs=4 -RFX
+[diff]
+  algorithm = histogram

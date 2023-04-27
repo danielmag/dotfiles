@@ -52,7 +52,7 @@ export PATH=$JAVA_HOME/bin:$PATH
 
 export PATH=$PATH:~/projects/apps/ios
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:$PATH"
 export PATH="/Users/daniel_magarreiro/ht/infrastructure/bin/darwin:$PATH"
 export PATH="$PATH:/opt/airbnb/bin"
 export PATH="$HOME/airlab/runtime_gems/tools/bin:$PATH"
@@ -64,8 +64,8 @@ export TF_PLUGIN_CACHE_DIR="$HOME/.terraform.d/plugin-cache"
 # by adding ./bin to path if the current project is trusted
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # place this after nvm initialization!
 autoload -U add-zsh-hook
@@ -91,7 +91,7 @@ load-nvmrc
 
 export EDITOR='nvim'
 
-export FZF_DEFAULT_COMMAND='fd --type file'
+export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # User configuration
@@ -132,17 +132,13 @@ setopt hist_ignore_dups
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias vi=vim
+alias python=python3
 
 alias ll="ls -lhas"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# --mmap is being used because of this issue: https://github.com/ggreer/the_silver_searcher/issues/1038
-alias ag='ag --mmap --path-to-ignore ~/.agignore'
-
-alias rg='rg --ignore-file ~/.agignore'
 
 # Hotel Tonight
 # assumes current directory name has the same name as the project in github
@@ -151,7 +147,7 @@ function open-pr() {
 }
 
 alias gpf='git push --force-with-lease'
-alias grom='git pull; git rebase --interactive --autosquash --autostash origin/master'
+alias grom='jk || git pull; git rebase --interactive --autosquash --autostash origin/master'
 alias sauce='source ~/.zshrc'
 
 eval "$(rbenv init -)"
@@ -168,3 +164,8 @@ fi
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 export BAT_THEME="gruvbox-dark"
+export PATH="/usr/local/opt/kubernetes-cli@1.22/bin:$PATH"
+
+# begin pineapple block
+source /Users/daniel_magarreiro/airlab/repos/pineapple/frontend/pineapple/scripts/shellhelper.sh
+# end pineapple block

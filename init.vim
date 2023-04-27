@@ -32,22 +32,11 @@ Plug 'HerringtonDarkholme/yats.vim'
 Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'othree/html5.vim'
 Plug 'hail2u/vim-css3-syntax'
-Plug 'evidens/vim-twig'
-Plug 'slim-template/vim-slim'
-Plug 'kchmck/vim-coffee-script'
+
+Plug 'udalov/kotlin-vim'
 
 " ruby stuff
-Plug 'tpope/vim-cucumber'
 Plug 'tpope/vim-rails'
-Plug 'tpope/vim-bundler'
-
-" ctags!
-" Plug 'ludovicchabant/vim-gutentags'
-
-" nmap <silent> <leader>] :exe v:count1."tag unsafe_tax_handling?"|norm! zv
-
-" ctags are very slow on the monorepo and not that useful for frontend work
-" let g:gutentags_enabled = 0
 
 " projectionist.vim: Granular project configuration. Very useful for alternating
 " between test and main file
@@ -59,74 +48,51 @@ Plug 'tpope/vim-dispatch'
 let g:dispatch_quickfix_height = 25
 let g:dispatch_tmux_height = 25
 
+
 " A Vim wrapper for running tests on different granularities
 Plug 'janko-m/vim-test'
-
-let test#strategy = "neovim"
 
 " vim-test mappings
 nmap <silent> <leader>t :w<CR>:TestNearest<CR>
 nmap <silent> <leader>T :w<CR>:TestFile<CR>
 nmap <silent> <leader>l :w<CR>:TestLast<CR>
 
-let test#javascript#jest#options = '--config=config/jest.config.js'
+let test#strategy = "neovim"
 
 " Fuzzy finding!
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
-nnoremap <leader>f :call fzf#vim#files('', fzf#vim#with_preview('right'))<CR>
+nnoremap <leader>f :Files<CR>
 nnoremap <leader>b :Buffers<CR>
-nnoremap <leader>g :GitFiles?<CR>
 
-" search word under cursor using fzf's Ag/Rg
-nnoremap <leader>ag :Ag <C-R><C-W><cr>!spec<space>
-nnoremap <leader>rg :Rg <C-R><C-W><cr>!spec<space>
-
-" search tags with fzf
-nnoremap <leader>ct :Tags ^<C-R><C-W><cr>
-
-" Mapping selecting mappings
-nmap <leader><tab> <plug>(fzf-maps-n)
-xmap <leader><tab> <plug>(fzf-maps-x)
-omap <leader><tab> <plug>(fzf-maps-o)
-
-" Insert mode completion
-imap <c-x><c-f> <plug>(fzf-complete-path)
-imap <c-x><c-j> <plug>(fzf-complete-file-ag)
-imap <c-x><c-l> <plug>(fzf-complete-line)
+" search word under cursor using fzf's Rg
+nnoremap <leader>rg :Rg <C-R><C-W><cr>
 
 " Intellisense engine for vim8 & neovim, full language server protocol support as VSCode
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-" started having weird error when using coc. This seems to fix it for now (https://github.com/neoclide/coc.nvim/issues/628#issuecomment-478441353)
-" let g:coc_node_args = ['--max-old-space-size=8192']
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#pum#visible() ? coc#pum#next(1):
+      \ CheckBackspace() ? "\<Tab>" :
       \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
-function! s:check_back_space() abort
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice.
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+function! CheckBackspace() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-let g:coc_snippet_next = '<Right>'
-
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() :
-                                           \"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-" Or use `complete_info` if your vim support it, like:
-" inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
@@ -141,15 +107,13 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+nnoremap <silent> K :call ShowDocumentation()<CR>
 
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
     call CocActionAsync('doHover')
   else
-    execute '!' . &keywordprg . " " . expand('<cword>')
+    call feedkeys('K', 'in')
   endif
 endfunction
 
@@ -166,10 +130,20 @@ augroup end
 xmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
 
+nmap <leader>cc  <Plug>(coc-codeaction-source)
+
+" Apply the most preferred quickfix action to fix diagnostic on the current line
+nmap <leader>qf  <Plug>(coc-fix-current)
+
 " Map function text objects
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
 xmap if <Plug>(coc-funcobj-i)
 omap if <Plug>(coc-funcobj-i)
+
+" Neovim plugin for GitHub Copilot
+Plug 'github/copilot.vim'
+
+let g:copilot_no_tab_map = v:true
 
 " theme
 Plug 'morhetz/gruvbox'
@@ -188,6 +162,9 @@ Plug 'tommcdo/vim-exchange'
 
 " git integration
 Plug 'tpope/vim-fugitive'
+
+command! Gblame :Git blame
+command! Gbrowse :GBrowse
 
 Plug 'tpope/vim-rhubarb'
 
@@ -262,23 +239,6 @@ Plug 'airblade/vim-gitgutter'
 " continuously updated session files
 Plug 'tpope/vim-obsession'
 
-" Asynchronous Lint Engine
-Plug 'w0rp/ale'
-
-let g:ale_fixers = {
-      \   'ruby': ['rubocop'],
-      \   'javascript': ['eslint'],
-      \   'typescript': ['eslint'],
-      \   'javascriptreact': ['eslint'],
-      \   'typescriptreact': ['eslint'],
-      \}
-
-" Set this in your vimrc file to disabling highlighting
-let g:ale_set_highlights = 0
-
-nmap <leader>af :ALEFix<kEnter>
-let g:ale_fix_on_save = 1
-
 " tree explorer plugin for vim
 Plug 'scrooloose/nerdtree'
 
@@ -350,7 +310,7 @@ augroup END
 " shell for syntax highlighting purposes.
 let g:is_posix = 1
 
-set synmaxcol=500
+set synmaxcol=1000
 
 " Softtabs, 2 spaces
 set tabstop=2
@@ -373,12 +333,6 @@ set wildignore+=**/node_modules/**
 " Use one space, not two, after punctuation.
 set nojoinspaces
 
-" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
-if executable('ag')
-  " Use Ag over Grep
-  set grepprg=ag\ --nogroup\ --nocolor
-endif
-
 " Make it obvious where 80 characters is
 set textwidth=80
 set colorcolumn=+1
@@ -386,9 +340,6 @@ set colorcolumn=+1
 
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
-
-" Run commands that require an interactive shell
-" nnoremap <Leader>r :RunInInteractiveShell<space>
 
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
@@ -417,10 +368,16 @@ fun! TrimWhitespace()
 endfun
 autocmd BufWritePre * :call TrimWhitespace()
 
+fun! SaveIfModified()
+  if getbufinfo('%')[0].changed
+    :w
+  endif
+endfun
+
 " reload file when focus gained and save when focus lost
 set autoread
 au FocusGained,BufEnter * :checktime
-au FocusLost,WinLeave,BufLeave * :silent! w
+au FocusLost,WinLeave,BufLeave * :call SaveIfModified()
 
 " write and read from the system clipboard
 set clipboard^=unnamed,unnamedplus
@@ -523,6 +480,9 @@ tnoremap <C-h> <C-\><C-n><C-w>h
 tnoremap <C-j> <C-\><C-n><C-w>j
 tnoremap <C-k> <C-\><C-n><C-w>k
 tnoremap <C-l> <C-\><C-n><C-w>l
+
+" import
+nnoremap <leader>im ojkpbbbyiwIimport jkpa from 'jkwcf/:jkAjkbhC'jk:w<CR>
 
 " go to insert mode when entering terminal windows
 :au BufEnter * if &buftype == 'terminal' | :startinsert | endif
@@ -681,3 +641,7 @@ let b:vim = b:thisdir . "/.vim.custom"
 if (filereadable(b:vim))
   execute "source " . b:vim
 endif
+
+" this needs to be at end for some reason
+let test#javascript#jest#executable = 'yak script jest'
+let test#javascript#jest#file_pattern .= '|(variations\.tsx)'
