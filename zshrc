@@ -45,7 +45,7 @@ plugins=(git bundler zsh-autosuggestions)
 ZSH_THEME="avit"
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/daniel_magarreiro/.oh-my-zsh
+export ZSH=/Users/d/.oh-my-zsh
 
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/amazon-corretto-8.jdk/Contents/Home
 export PATH=$JAVA_HOME/bin:$PATH
@@ -53,10 +53,8 @@ export PATH=$JAVA_HOME/bin:$PATH
 export PATH=$PATH:~/projects/apps/ios
 
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:$PATH"
-export PATH="/Users/daniel_magarreiro/ht/infrastructure/bin/darwin:$PATH"
 export PATH="$PATH:/opt/airbnb/bin"
-export PATH="$HOME/airlab/runtime_gems/tools/bin:$PATH"
-export PATH="$PATH:/Users/daniel_magarreiro/projects/jk"
+export PATH="$PATH:/Users/d/projects/jk"
 
 export TF_PLUGIN_CACHE_DIR="$HOME/.terraform.d/plugin-cache"
 

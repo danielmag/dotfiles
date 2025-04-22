@@ -17,6 +17,13 @@ set shortmess+=c
 " always show signcolumns
 set signcolumn=yes
 
+" persist undos
+if !isdirectory($HOME."/.vim/undo-dir")
+  call mkdir($HOME."/.vim/undo-dir", "", 0700)
+endif
+set undodir=~/.vim/undo-dir
+set undofile
+
 """""""""""""""""""""""""""""""""""
 "" Plugins
 """""""""""""""""""""""""""""""""""
@@ -77,7 +84,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " other plugin before putting this into your config.
 inoremap <silent><expr> <TAB>
       \ coc#pum#visible() ? coc#pum#next(1):
-      \ CheckBackspace() ? "\<Tab>" :
+      \ CheckBackspace() ? copilot#Accept("<TAB>") :
       \ coc#refresh()
 inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
@@ -167,6 +174,8 @@ command! Gblame :Git blame
 command! Gbrowse :GBrowse
 
 Plug 'tpope/vim-rhubarb'
+
+vnoremap <silent><leader>gb :GBrowse<cr>
 
 " comment/uncomment with motions
 Plug 'tpope/vim-commentary'
@@ -378,6 +387,7 @@ endfun
 set autoread
 au FocusGained,BufEnter * :checktime
 au FocusLost,WinLeave,BufLeave * :call SaveIfModified()
+au FocusLost,WinLeave,BufLeave * :CocCommand eslint.executeAutofix
 
 " write and read from the system clipboard
 set clipboard^=unnamed,unnamedplus
